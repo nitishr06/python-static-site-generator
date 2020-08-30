@@ -1,9 +1,10 @@
 import typer
-import site from ssg.site
+
+from ssg.Site import Site 
 
 def main(source = "content", dest = "dist"):
     config = {"source":source, "dest" : dest}
-    s = site(source, dest, **)
-    s.build()
+    Site(**config).build()
+    
 
-tyoer.run(main)
+typer.run(main)
