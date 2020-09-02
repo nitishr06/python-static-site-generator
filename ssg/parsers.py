@@ -8,9 +8,8 @@ class Parse:
     def valid_extension(self,extension):
         return extension in self.extensions
        
-    def parse(self,path,source,dest):
-        if NotImplementedError:
-            raise NotImplementedError("Method not implemented!")
+    def parse(self,path: Path, source: Path, dest: Path):
+        raise NotImplementedError("Method not implemented!")
 
     def read(self,path):
         with open(path,'r') as file:
@@ -22,7 +21,7 @@ class Parse:
             file.write(content)
     
     def copy(self,path,source,dest):
-        shutil.copy2(path,dest/source)
+        shutil.copy2(path,dest/path.relative_to(source))
 
     
 class ResourceParser(Parse):
@@ -30,7 +29,7 @@ class ResourceParser(Parse):
     extensions = [".jpg", ".png", ".gif", ".css",".html"]
 
     def parse(self,path,source,dest):
-        super().copy(path,source,dest)
+        self.copy(path,source,dest)
 
 
 
